@@ -1,0 +1,2 @@
+class GrammaticalRule < ApplicationRecord
+end
