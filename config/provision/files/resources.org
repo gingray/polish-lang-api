@@ -1,0 +1,2 @@
+# docker service logs -f polish_lang_api_app
+ansible-playbook production.yml --tags=deploy

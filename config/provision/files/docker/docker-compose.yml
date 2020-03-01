@@ -1,0 +1,61 @@
+version: '3.6'
+services:
+  app:
+    image: gingray/polish-lang-api
+    environment:
+      SECRET_PATH: /run/secrets/env-polish-lang-api
+    deploy:
+      placement:
+        constraints: [node.labels.type == app]
+      labels:
+        - "traefik.docker.network=public-network"
+        - "traefik.enable=true"
+        - "traefik.port=3000"
+        - "traefik.frontend.rule=Host:polish-lang-api.binray.io"
+        - "traefik.backend=polish-lang-api.binray.io"
+    networks:
+      - public-network
+      - internal-network-polish-lang-api
+    secrets:
+      - env-polish-lang-api
+    depends_on:
+      - db
+      - redis
+  redis:
+    image: redis:5.0
+    deploy:
+      placement:
+        constraints: [node.labels.type == database]
+    networks:
+      - internal-network-polish-lang-api
+    volumes:
+      - redis-data-polish-lang-api:/data
+  db:
+    image: postgres:10.5
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_DB: polish-lang-api
+      POSTGRES_PASSWORD_FILE: /run/secrets/psql-password-polish-lang-api
+    volumes:
+      - postgres-data-polish-lang-api:/var/lib/postgresql/data
+    networks:
+      - internal-network-polish-lang-api
+    secrets:
+      - psql-password-polish-lang-api
+    deploy:
+      placement:
+        constraints: [node.labels.type == database]
+volumes:
+  postgres-data-polish-lang-api:
+  redis-data-polish-lang-api:
+networks:
+  internal-network-polish-lang-api:
+    external: true
+  public-network:
+    external: true
+secrets:
+  env-polish-lang-api:
+    external: true
+  psql-password-polish-lang-api:
+    external: true
+

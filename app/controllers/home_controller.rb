@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
   def add_sample
     Word.transaction do
-      word = Word.create! name: params_add_sample[:original], lang: 'pl'
+      word = Word.create! name: params_add_sample[:original].downcase, lang: 'pl'
       word.tag_list.add params_add_sample[:tags], parse: true
       word.save!
-      Word.create! name: params_add_sample[:translation], lang: params_add_sample[:lang], originator: word
+      Word.create! name: params_add_sample[:translation].downcase, lang: params_add_sample[:lang], originator: word
 
     end
   end
