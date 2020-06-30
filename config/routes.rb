@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'home/language_parts'
   get 'home/words'
 
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  
+  namespace :api do
+    resources :translations, only:[] do
+      post :google_translate, on: :collection
+    end
+  end
 end
