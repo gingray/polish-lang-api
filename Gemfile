@@ -5,9 +5,10 @@ ruby '2.5.1'
 
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 4.3.4'
 gem 'rack-cors'
 gem 'dotenv-rails'
+gem 'nokogiri', '~> 1.10.8'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'acts-as-taggable-on', '~> 6.0'
