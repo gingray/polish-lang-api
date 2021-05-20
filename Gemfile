@@ -8,7 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3.4'
 gem 'rack-cors'
 gem 'dotenv-rails'
-gem 'nokogiri', '~> 1.10.8'
+gem 'nokogiri', '~> 1.11.4'
 gem 'google-cloud-translate'
 
 gem 'bootsnap', '>= 1.1.0', require: false
