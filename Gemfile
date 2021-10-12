@@ -5,7 +5,7 @@ ruby '2.5.1'
 
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.3.4'
+gem 'puma', '~> 4.3.9'
 gem 'rack-cors'
 gem 'dotenv-rails'
 gem 'nokogiri', '~> 1.10.8'
